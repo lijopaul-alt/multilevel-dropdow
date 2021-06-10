@@ -82,43 +82,23 @@ const App = () => {
             buttonClassName="button"
             wrapperClassName="button"
           >
+            <Dropdown.Item className="item">Continental</Dropdown.Item>
+            <Dropdown.Item className="item">punjabi</Dropdown.Item>
+            <Dropdown.Item className="item">chettinad</Dropdown.Item>
             <Dropdown.Item className="item">
-              <p>Continental</p>
-            </Dropdown.Item>
-            <Dropdown.Item className="item">
-              <p>punjabi</p>
-            </Dropdown.Item>
-            <Dropdown.Item className="item">
-              <p>chettinad</p>
-            </Dropdown.Item>
-            <Dropdown.Item className="item">
-              <p>
-                south indian <i className="fa fa-sort-desc icon"></i>
-              </p>
+              south indian <i className="fa fa-sort-desc icon"></i>
               <Dropdown.Submenu position="right">
+                <Dropdown.Item className="item">Dosa</Dropdown.Item>
+                <Dropdown.Item className="item">Uthappam</Dropdown.Item>
+                <Dropdown.Item className="item">Parotta</Dropdown.Item>
                 <Dropdown.Item className="item">
-                  <p>Dosa</p>
-                </Dropdown.Item>
-                <Dropdown.Item className="item">
-                  <p>Uthappam</p>
-                </Dropdown.Item>
-                <Dropdown.Item className="item">
-                  <p>Parotta</p>
-                </Dropdown.Item>
-                <Dropdown.Item className="item">
-                  <p>
-                    Chicken <i className="fa fa-sort-desc icon"></i>
-                  </p>
+                  Chicken <i className="fa fa-sort-desc icon"></i>
                   <Dropdown.Submenu position="right">
                     <Dropdown.Item className="item">
-                      <p>Chicken Masala</p>
+                      Chicken Masala
                     </Dropdown.Item>
-                    <Dropdown.Item className="item">
-                      <p>Chicke gravy</p>
-                    </Dropdown.Item>
-                    <Dropdown.Item className="item">
-                      <p>Chicken 65</p>
-                    </Dropdown.Item>
+                    <Dropdown.Item className="item">Chicke gravy</Dropdown.Item>
+                    <Dropdown.Item className="item">Chicken 65</Dropdown.Item>
                   </Dropdown.Submenu>
                 </Dropdown.Item>
               </Dropdown.Submenu>
