@@ -17,7 +17,9 @@ nav {
   background-color: rgb(255, 255, 255);
   padding: 8px 10px;
 }
-
+.item {
+  color: black;
+}
 .icon {
   margin-left: 60px;
 }
