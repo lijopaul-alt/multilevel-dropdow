@@ -1,70 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import Catinput from "./Components/CatInput";
 
+import Menuinput from "./Components/MenuInput";
 import Dropdown from "react-multilevel-dropdown";
+import classes from "./Components/Input.module.css";
 
 const App = () => {
-  // const categories=useState({id:1,value:'continental'
+  const [catergories, setCategories] = useState({});
+  const [inputCatVal, setInputCatVal] = useState("");
 
-  //},{id:2,value:'punjabi'},{id:3,value:'chettinad'},{id:'4,'south indian'})
-  // const [dishes] = useState([
-  //   { id: 6, value: "Dosa" },
-  //   { id: 7, value: "uthappam" },
-  //   { id: 8, value: "parotta" },
-  //   { id: 9, value: "chicken" },
-  // ]);
+  const [inputMenuVal, setInputMenuVal] = useState("");
 
-  // const [variety] = useState([
-  //   { id: 11, value: "chciken masala" },
-  //   { id: 12, value: "chicken gravy" },
-  //   { id: 13, value: "chicken 65" },
-  //   { id: 14, value: "chiken varuval" },
-  // ]);
+  const setNewCat = () => {
+    if (inputCatVal.val !== "") {
+      setCategories((prevState) => {
+        return {
+          ...prevState,
+          [inputCatVal]: [],
+        };
+      });
+    }
+  };
 
-  // const nestedObjects = Catergories.map((Catergories) => {
-  //   if (Catergories.value === "south indian") {
-  //     return (
-  //       <Dropdown.Item
-  //         children={Catergories.id}
-  //         key={Catergories.id}
-  //         className="item"
-  //       >
-  //         <p key={Catergories.id}>
-  //           {Catergories.value} <i className="fa fa-sort-desc icon"></i>
-  //         </p>
-  //         <Dropdown.Submenu position="right">
-  //           {dishes.map((dishes) => {
-  //             if (dishes.value === "chicken") {
-  //               return (
-  //                 <Dropdown.Item key={dishes.id} className="item">
-  //                   <p key={dishes.id}>{dishes.value}</p>
-  //                   <i className="fa fa-sort-desc icon"></i>
-  //                   <Dropdown.Submenu position="right">
-  //                     {variety.map((variety) => (
-  //                       <Dropdown.Item key={variety.key} className="item">
-  //                         <p key={variety.key}> {variety.value}</p>
-  //                       </Dropdown.Item>
-  //                     ))}
-  //                   </Dropdown.Submenu>
-  //                 </Dropdown.Item>
-  //               );
-  //             } else
-  //               return (
-  //                 <Dropdown.Item key={dishes.id} className="item">
-  //                   <p key={dishes.id}>{dishes.value}</p>
-  //                 </Dropdown.Item>
-  //               );
-  //           })}
-  //         </Dropdown.Submenu>
-  //       </Dropdown.Item>
-  //     );
-  //   } else
-  //     return (
-  //       <Dropdown.Item key={Catergories.id} className="item">
-  //         <p>{Catergories.value}</p>
-  //       </Dropdown.Item>
-  //     );
-  // });
+  const setNewMenu = () => {
+    if (inputMenuVal.val !== "") {
+      const main = inputCatVal;
+      const sub = inputMenuVal;
+      setCategories((prevState) => {
+        return {
+          ...prevState,
+          [main]: [...prevState[main], sub],
+        };
+      });
+      setInputMenuVal("");
+    }
+  };
+
   return (
     <React.Fragment>
       <nav>
@@ -103,6 +75,20 @@ const App = () => {
                 </Dropdown.Item>
               </Dropdown.Submenu>
             </Dropdown.Item>
+            {Object.keys(catergories).map((cat, i) => (
+              <Dropdown.Item key={i} className="item">
+                {cat}
+                {catergories[cat].length > 0 ? (
+                  <Dropdown.Submenu position="right">
+                    {catergories[cat].map((cater, i) => (
+                      <Dropdown.Item className="item" key={i + 6}>
+                        {cater}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Submenu>
+                ) : null}
+              </Dropdown.Item>
+            ))}
           </Dropdown>
 
           <Dropdown
@@ -119,7 +105,29 @@ const App = () => {
           ></Dropdown>
         </ul>
       </nav>
-      <h4>Click catergories </h4>
+      <div className={classes.form}>
+        <Catinput
+          setInpuCatval={setInputCatVal}
+          setNewCat={setNewCat}
+          val={inputCatVal}
+        />
+        <Menuinput
+          setInputMenuVal={setInputMenuVal}
+          setNewMenu={setNewMenu}
+          val={inputMenuVal}
+        />
+      </div>
+      <div className={classes.list}>
+        <p>STEP 1: Add new category in category input</p>
+        <p>STEP 2: Click UPDATE CAT button to add a new category in list</p>
+        <p>
+          STEP 3: Add new SUBMENU to corresponding category in submenu input
+        </p>
+        <p>
+          STEP 4: click UPDATE SUB button to add a new submenu in corresponding
+          category list
+        </p>
+      </div>
     </React.Fragment>
   );
 };
