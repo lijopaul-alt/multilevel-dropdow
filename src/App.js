@@ -24,7 +24,7 @@ const App = () => {
   };
 
   const setNewMenu = () => {
-    if (inputMenuVal.val !== "") {
+    if (inputMenuVal !== "" && inputCatVal !== "") {
       const main = inputCatVal;
       const sub = inputMenuVal;
       setCategories((prevState) => {
@@ -115,6 +115,7 @@ const App = () => {
           setInputMenuVal={setInputMenuVal}
           setNewMenu={setNewMenu}
           val={inputMenuVal}
+          cat={catergories}
         />
       </div>
       <div className={classes.list}>
