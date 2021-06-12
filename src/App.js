@@ -23,17 +23,21 @@ const App = () => {
     }
   };
 
-  const setNewMenu = () => {
+  const setNewMenu = (cat) => {
     if (inputMenuVal !== "" && inputCatVal !== "") {
       const main = inputCatVal;
       const sub = inputMenuVal;
-      setCategories((prevState) => {
-        return {
-          ...prevState,
-          [main]: [...prevState[main], sub],
-        };
-      });
-      setInputMenuVal("");
+      const check = Object.keys(catergories).some((cat) => cat === main);
+
+      if (check) {
+        setCategories((prevState) => {
+          return {
+            ...prevState,
+            [main]: [...prevState[main], sub],
+          };
+        });
+        setInputMenuVal("");
+      }
     }
   };
 
@@ -115,7 +119,6 @@ const App = () => {
           setInputMenuVal={setInputMenuVal}
           setNewMenu={setNewMenu}
           val={inputMenuVal}
-          cat={catergories}
         />
       </div>
       <div className={classes.list}>

@@ -13,7 +13,7 @@ const Menuinput = (props) => {
           value={props.val}
         />
       </label>
-      <button onClick={() => props.setNewMenu()}>UPDATE SUB</button>
+      <button onClick={() => props.setNewMenu(props.cat)}>UPDATE SUB</button>
     </div>
   );
 };
